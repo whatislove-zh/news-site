@@ -9,13 +9,21 @@ import {
   CardActions,
   Button,
 } from "@mui/material";
+import { useAppDispatch } from "../store/hook";
+import { addId } from "../store/features/deletePost/deleteSlice";
 
 type propsType = {
   post: PostType;
 };
 
 export const PostCard: React.FC<propsType> = (props) => {
-  const { title, imageUrl, summary } = props.post;
+  const { title, imageUrl, summary, id } = props.post;
+
+  const dispatch = useAppDispatch()
+
+  const deletePostHelper = () => {
+    dispatch(addId(id))
+  }
 
   return (
     <>
@@ -54,6 +62,7 @@ export const PostCard: React.FC<propsType> = (props) => {
           </CardContent>
           <CardActions>
             <Button size="small">Read More</Button>
+            <Button size="small" onClick={deletePostHelper}>Delete</Button>
           </CardActions>
         </Card>
       </Grid>
