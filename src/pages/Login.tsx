@@ -5,7 +5,7 @@ import React from "react";
 export const Login = () => {
   return (
     <Box
-      sx={{ display: "flex",flexDirection:"column", justifyContent: "center", alignItems: "center", height:"80vh" }}
+      sx={{ display: "flex",flexDirection:"column", justifyContent: "center", alignItems: "center", minHeight:"80vh" }}
     >
       <Typography variant="h5">Enter your username/email and password please</Typography>
       <Box
