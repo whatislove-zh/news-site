@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { deleteItemsReducer } from "./features/deletePost/deleteSlice";
 import { postsReduser } from "./features/getPosts/postsSlise";
 
 const store = configureStore({
-  reducer: { posts: postsReduser },
+  reducer: { posts: postsReduser, deletedItems: deleteItemsReducer },
   devTools: true,
   middleware: (getDefaultMiddlware) =>
     getDefaultMiddlware({
