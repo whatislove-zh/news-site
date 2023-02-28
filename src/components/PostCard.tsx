@@ -23,6 +23,7 @@ export const PostCard: React.FC<propsType> = (props) => {
         <Card sx={{ maxWidth: 400, margin: "auto", height: "530px" }}>
           <CardMedia
             component="img"
+            loading="lazy"
             alt={title}
             height="217px"
             image={imageUrl}
