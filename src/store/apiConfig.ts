@@ -1,7 +1,7 @@
 
 const BASE_URL: string = "https://api.spaceflightnewsapi.net/v3/articles"
 
-export const ALL_POSTS = BASE_URL + "?_limit=100"
+export const ALL_POSTS = BASE_URL + "?_limit=50"
 
 export const searchPostById = (id:string | number) => BASE_URL + `/${id}`
 
