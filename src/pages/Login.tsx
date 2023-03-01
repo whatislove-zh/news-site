@@ -6,6 +6,7 @@ import { loginUser } from "../store/features/profleInfo/profileSlice";
 import { useAppDispatch, useAppSelector } from "../store/hook";
 import { formDataType } from "../types/types";
 import { useEffect } from "react";
+import {useTranslation} from "react-i18next"
 
 export const Login = () => {
   const isUserSignIn = useAppSelector((state) => state.profile.isSignIn);
@@ -34,6 +35,7 @@ export const Login = () => {
     reset();
     navigate("/profile");
   };
+  const {t} = useTranslation()
 
   return (
     <Box
@@ -46,7 +48,7 @@ export const Login = () => {
       }}
     >
       <Typography variant="h5">
-        Enter your username/email and password please
+        {t("loginHead")}
       </Typography>
       <Box
         component="form"
@@ -63,14 +65,14 @@ export const Login = () => {
           fullWidth
           autoComplete="email"
           sx={{ m: "15px" }}
-          placeholder="Login"
+          placeholder={t("loginField") as string}
           helperText={errors?.login ? (errors.login.message as string) : ""}
           error={errors?.login ? true : false}
           {...register("login", {
-            required: "This field is required",
+            required: t("requiredField") as string,
             pattern: {
               value: /admin/,
-              message: "Login is not correct",
+              message: t("loginError"),
             },
           })}
         />
@@ -79,16 +81,16 @@ export const Login = () => {
           autoComplete="password"
           type="password"
           sx={{ m: "15px" }}
-          placeholder="Password"
+          placeholder={t("password") as string}
           helperText={
             errors?.password ? (errors.password.message as string) : ""
           }
           error={errors?.password ? true : false}
           {...register("password", {
-            required: "This field is required",
+            required: t("requiredField") as string,
             pattern: {
               value: /12345/,
-              message: "Password is correct",
+              message: t("passwordError"),
             },
           })}
         />
@@ -98,7 +100,7 @@ export const Login = () => {
           variant="outlined"
           sx={{ width: "30%", minWidth: "100px" }}
         >
-          Sign In
+          {t("signIn")}
         </Button>
       </Box>
     </Box>

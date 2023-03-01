@@ -10,38 +10,48 @@ import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../store/hook";
+import {useTranslation} from "react-i18next"
+
+const lngs = {
+  en:{nativeName:"English"},
+  ua:{nativeName:"Ukrainian"}
+}
 
 export const Header = () => {
+  const {t, i18n} = useTranslation()
+
+  
+
   const user = useAppSelector((state) => state.profile);
   const isSignIn = user.isSignIn;
+
   return (
     <AppBar position="static" sx={{ background: "none", mb: "30px" }}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
         <Box>
-          <IconButton size="large" edge="start" sx={{ color: "#000000" }}>
-            <MenuRoundedIcon sx={{ fontSize: "25px" }} />
-          </IconButton>
-          <IconButton sx={{ padding: 0 }}>
-            <Typography>Logo</Typography>
-          </IconButton>
+          
+          {Object.keys(lngs).map((lng) => <Button key={lng} onClick={() => {i18n.changeLanguage(lng)}}>{lng}</Button>)}
         </Box>
+        
         <Box>
+        
           <Link to="/" style={{ textDecoration: "none" }}>
-            <Button>Home</Button>
+            <Button>{t("home")}</Button>
           </Link>
           <Link to="news" style={{ textDecoration: "none" }}>
-            <Button>News</Button>
+            <Button>{t("news")}</Button>
           </Link>
 
           {isSignIn ? (
             <Link to="profile" style={{ textDecoration: "none" }}>
-              <Button>Profile</Button>
+              <Button>{t("profile")}</Button>
             </Link>
           ) : (
             <Link to="login" style={{ textDecoration: "none" }}>
-              <Button>Login</Button>
+              <Button>{t("loginLink")}</Button>
             </Link>
           )}
+          
         </Box>
       </Toolbar>
     </AppBar>

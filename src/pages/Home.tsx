@@ -2,6 +2,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import { useAppSelector } from "../store/hook";
 import { selectPosts } from "../store/features/getPosts/postsSlise";
 import { PostCard } from "../components/PostCard";
+import {useTranslation} from "react-i18next"
 
 export const Home: React.FC = () => {
   const posts = useAppSelector(selectPosts);
@@ -20,11 +21,12 @@ export const Home: React.FC = () => {
     });
     return postedAt === todayDate;
   });
+  const {t} = useTranslation()
 
   return (
     <>
       <Box>
-        <Typography align="center" variant="h3" sx={{m:"50px"}}>Today news</Typography>
+        <Typography align="center" variant="h3" sx={{m:"50px"}}>{t("homeHeader")}</Typography>
         <Grid container spacing={2} justifyContent="center">
           {todayPosts.map((post) => (
             <PostCard key={post.id} post={post} home />
