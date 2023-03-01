@@ -13,11 +13,13 @@ import { useAppDispatch } from "../store/hook";
 import { addId } from "../store/features/deletePost/deleteSlice";
 
 type propsType = {
-  post: PostType;
+  post: PostType,
+  home:boolean
 };
 
 export const PostCard: React.FC<propsType> = (props) => {
   const { title, imageUrl, summary, id } = props.post;
+  const home = props.home
 
   const dispatch = useAppDispatch()
 
@@ -28,7 +30,7 @@ export const PostCard: React.FC<propsType> = (props) => {
   return (
     <>
       <Grid item xs={12} md={4} justifyContent="center">
-        <Card sx={{ maxWidth: 400, margin: "auto", height: "530px" }}>
+        <Card sx={{ maxWidth: 400, margin: "auto", height: "530px", boxShadow:6 }}>
           <CardMedia
             component="img"
             loading="lazy"
@@ -62,7 +64,7 @@ export const PostCard: React.FC<propsType> = (props) => {
           </CardContent>
           <CardActions>
             <Button size="small">Read More</Button>
-            <Button size="small" onClick={deletePostHelper}>Delete</Button>
+            {!home && <Button size="small" onClick={deletePostHelper}>Delete</Button>}
           </CardActions>
         </Card>
       </Grid>
