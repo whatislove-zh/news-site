@@ -1,9 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { deleteItemsReducer } from "./features/deletePost/deleteSlice";
 import { postsReduser } from "./features/getPosts/postsSlise";
+import { profileReduser } from "./features/profleInfo/profileSlice";
 
 const store = configureStore({
-  reducer: { posts: postsReduser, deletedItems: deleteItemsReducer },
+  reducer: {
+    posts: postsReduser,
+    deletedItems: deleteItemsReducer,
+    profile: profileReduser,
+  },
   devTools: true,
   middleware: (getDefaultMiddlware) =>
     getDefaultMiddlware({
