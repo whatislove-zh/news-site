@@ -9,7 +9,7 @@ export const Layout: React.FC = () => {
   return (
     <Container maxWidth="lg">
       <Header />
-      <Box sx={{ minHeight: "80vh" }}>
+      <Box sx={{ minHeight: "75vh" }}>
         <Outlet />
       </Box>
       <Footer />
