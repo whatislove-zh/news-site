@@ -1,5 +1,36 @@
-import React from "react";
+import { Box, Grid, Typography } from "@mui/material";
+import { useAppSelector } from "../store/hook";
+import { selectPosts } from "../store/features/getPosts/postsSlise";
+import { PostCard } from "../components/PostCard";
 
 export const Home: React.FC = () => {
-  return <div>Home</div>;
+  const posts = useAppSelector(selectPosts);
+
+  const todayDate = new Date().toLocaleString("en-us", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
+  const todayPosts = posts.filter((post) => {
+    const postedAt = new Date(post.publishedAt).toLocaleString("en-us", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+    return postedAt === todayDate;
+  });
+
+  return (
+    <>
+      <Box>
+        <Typography align="center" variant="h3" sx={{m:"50px"}}>Today news</Typography>
+        <Grid container spacing={2} justifyContent="center">
+          {todayPosts.map((post) => (
+            <PostCard key={post.id} post={post} home />
+          ))}
+        </Grid>
+      </Box>
+    </>
+  );
 };
