@@ -7,7 +7,6 @@ import { useAppDispatch, useAppSelector } from "../store/hook";
 import { formDataType } from "../types/types";
 import { useEffect } from "react";
 
-
 export const Login = () => {
   const isUserSignIn = useAppSelector((state) => state.profile.isSignIn);
   const navigate = useNavigate();
@@ -27,18 +26,14 @@ export const Login = () => {
     mode: "onBlur",
   });
 
-
   const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<formDataType> = (data) => {
     dispatch(loginUser(data));
     localStorage.setItem("user", JSON.stringify({ ...data, isSignIn: true }));
-
     reset();
     navigate("/profile");
   };
-
-  useEffect(() => {}, []);
 
   return (
     <Box
