@@ -28,9 +28,9 @@ export const Home: React.FC = () => {
       <Box>
         <Typography align="center" variant="h3" sx={{m:"50px"}}>{t("homeHeader")}</Typography>
         <Grid container spacing={2} justifyContent="center">
-          {todayPosts.map((post) => (
+          {todayPosts.length > 0 ? todayPosts.map((post) => (
             <PostCard key={post.id} post={post} home />
-          ))}
+          )):<PostCard post={posts[0]} home />}
         </Grid>
       </Box>
     </>
