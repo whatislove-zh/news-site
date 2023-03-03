@@ -18,7 +18,9 @@ type propsType = {
 };
 
 export const PostCard: React.FC<propsType> = (props) => {
+  console.log(props)
   const { title, imageUrl, summary, id } = props.post;
+
   const home = props.home
 
   const dispatch = useAppDispatch()
